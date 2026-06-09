@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Reservation System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Airline Reservation System</p>
+      <h1>Flight booking dashboard</h1>
+    </div>
+    <div class="session">
+      <span id="sessionText">Not signed in</span>
+      <button id="logoutBtn" class="ghost hidden" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <button class="nav-btn active" data-view="home" type="button">Home</button>
+      <button class="nav-btn" data-view="flights" type="button">Flights</button>
+      <button class="nav-btn user-only hidden" data-view="bookings" type="button">My Bookings</button>
+      <button class="nav-btn admin-only hidden" data-view="admin" type="button">Admin</button>
+    </aside>
+
+    <section class="content">
+      <section id="homeView" class="view active">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Book, manage, and track</p>
+            <h2>Reserve seats with a cleaner web experience.</h2>
+            <p class="muted">Use the sample accounts or register a new passenger account. Data is saved in your browser.</p>
+          </div>
+          <div class="quick-card">
+            <h3>Sample Login</h3>
+            <p><strong>Admin:</strong> admin@airline.com / admin123</p>
+            <p><strong>User:</strong> user@airline.com / user123</p>
+          </div>
+        </div>
+
+        <div class="auth-grid">
+          <form id="loginForm" class="panel">
+            <h3>Login</h3>
+            <label>Email
+              <input id="loginEmail" type="email" required placeholder="name@example.com">
+            </label>
+            <label>Password
+              <input id="loginPassword" type="password" required minlength="4" placeholder="Password">
+            </label>
+            <button type="submit">Login</button>
+          </form>
+
+          <form id="registerForm" class="panel">
+            <h3>Register Passenger</h3>
+            <label>Name
+              <input id="registerName" type="text" required placeholder="Full name">
+            </label>
+            <label>Email
+              <input id="registerEmail" type="email" required placeholder="name@example.com">
+            </label>
+            <label>Password
+              <input id="registerPassword" type="password" required minlength="4" placeholder="At least 4 characters">
+            </label>
+            <button type="submit">Create Account</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="flightsView" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Flight Management</p>
+            <h2>Available flights</h2>
+          </div>
+        </div>
+
+        <form id="searchForm" class="toolbar">
+          <input id="searchSource" type="text" placeholder="Source">
+          <input id="searchDestination" type="text" placeholder="Destination">
+          <button type="submit">Search</button>
+          <button id="clearSearchBtn" class="secondary" type="button">Clear</button>
+        </form>
+
+        <div id="flightsList" class="card-grid"></div>
+      </section>
+
+      <section id="bookingsView" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Passenger</p>
+            <h2>My bookings</h2>
+          </div>
+        </div>
+        <div id="myBookingsList" class="table-wrap"></div>
+      </section>
+
+      <section id="adminView" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Admin Module</p>
+            <h2>Manage flights and bookings</h2>
+          </div>
+        </div>
+
+        <form id="addFlightForm" class="panel form-grid">
+          <h3>Add Flight</h3>
+          <label>Flight Number
+            <input id="flightNumber" type="text" required placeholder="AI404">
+          </label>
+          <label>Source
+            <input id="flightSource" type="text" required placeholder="Delhi">
+          </label>
+          <label>Destination
+            <input id="flightDestination" type="text" required placeholder="Mumbai">
+          </label>
+          <label>Time
+            <input id="flightTime" type="time" required>
+          </label>
+          <label>Seats
+            <input id="flightSeats" type="number" required min="1" placeholder="40">
+          </label>
+          <label>Fare
+            <input id="flightFare" type="number" required min="1" step="0.01" placeholder="4500">
+          </label>
+          <button type="submit">Add Flight</button>
+        </form>
+
+        <div class="split">
+          <div>
+            <h3>All Flights</h3>
+            <div id="adminFlightsList" class="table-wrap"></div>
+          </div>
+          <div>
+            <h3>All Bookings</h3>
+            <div id="allBookingsList" class="table-wrap"></div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
